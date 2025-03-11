@@ -1,0 +1,11 @@
+import express from "express";
+import {createBlog, updateBlog, getBlog, deleteBlog, getAllBlogs, likeBlog} from "../controllers/blog.controllers.js";
+import { authMiddleware, isadmin } from "../middleware/auth.middleware.js";
+const router = express.Router();
+router.post("/createblog",authMiddleware,isadmin, createBlog);
+router.put("/updateblog/:id",authMiddleware,isadmin, updateBlog);
+router.get("/getblog/:id", getBlog);
+router.delete("/deleteblog/:id",authMiddleware,isadmin, deleteBlog);
+router.get("/allblogs", getAllBlogs);
+router.put("/like",authMiddleware, likeBlog);
+export default router;
